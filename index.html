@@ -6,6 +6,7 @@
 <title>Foto a PDF — convierte fotos en PDF gratis, sin registro</title>
 <meta name="description" content="Escanea un documento con la cámara o sube fotos, ordénalas y descarga un PDF listo para imprimir. Todo en el navegador: gratis, sin registro, sin anuncios y sin subir nada a un servidor.">
 <link rel="canonical" href="https://pdfscanapp.vercel.app/">
+<meta name="google-site-verification" content="3xeR1habMLjqfc8fSOHihnGOTRAbN3WcY3-C0xxaSFA.anadelo">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="author" content="Foto a PDF">
 <meta property="og:type" content="website">
@@ -121,26 +122,41 @@
 
       <figure class="specimen">
         <div class="sheet" role="img"
-             aria-label="Hoja A4 resultante de escanear una factura: encabezados, tabla de conceptos, totales y pie de página.">
-          <div class="sheet-head">
-            <span class="sheet-logo"></span>
-            <span class="sheet-co">Estudio Taller Norte</span>
-            <span class="sheet-no">Nº 0042</span>
-          </div>
+             aria-label="Hoja A4 resultante de escanear una factura: emisor y número, datos del cliente, tabla de conceptos, totales con IVA, forma de pago y pie de página.">
+          <header class="sheet-head">
+            <span class="sheet-logo" aria-hidden="true">ET</span>
+            <div class="sheet-emisor">
+              <p class="sheet-co">Estudio Taller Norte</p>
+              <p class="sheet-sub">Delineación y mantenimiento técnico</p>
+            </div>
+            <div class="sheet-doc">
+              <p class="sheet-title">Factura</p>
+              <p class="sheet-no">Nº 0042 · 2026/041</p>
+            </div>
+          </header>
 
-          <h3 class="sheet-title">Factura</h3>
-          <p class="sheet-meta">12 de marzo de 2026 · Cliente: Marría Documents S.L.</p>
+          <dl class="sheet-meta">
+            <div><dt>Fecha</dt><dd>12 de marzo de 2026</dd></div>
+            <div><dt>Vence</dt><dd>11 de abril de 2026</dd></div>
+            <div><dt>Cliente</dt><dd>Marría Documents S.L.</dd></div>
+            <div><dt>NIF</dt><dd>B-78912345</dd></div>
+          </dl>
 
           <table class="sheet-table">
             <thead>
-              <tr><th scope="col">Concepto</th><th scope="col">Cant.</th><th scope="col">Importe</th></tr>
+              <tr>
+                <th scope="col">Concepto</th>
+                <th scope="col" class="num">Cant.</th>
+                <th scope="col" class="num">Precio</th>
+                <th scope="col" class="num">Importe</th>
+              </tr>
             </thead>
             <tbody>
-              <tr><td>Mantenimiento de equipos</td><td>2</td><td>480,00 €</td></tr>
-              <tr><td>Sustitución de componentes</td><td>1</td><td>210,50 €</td></tr>
-              <tr><td>Desplazamiento</td><td>1</td><td>45,00 €</td></tr>
-              <tr><td>Licencia anual de software</td><td>3</td><td>135,00 €</td></tr>
-              <tr><td>Formación presencial</td><td>4</td><td>320,00 €</td></tr>
+              <tr><td>Mantenimiento de equipos</td><td class="num">2</td><td class="num">240,00 €</td><td class="num">480,00 €</td></tr>
+              <tr><td>Sustitución de componentes</td><td class="num">1</td><td class="num">210,50 €</td><td class="num">210,50 €</td></tr>
+              <tr><td>Desplazamiento</td><td class="num">1</td><td class="num">45,00 €</td><td class="num">45,00 €</td></tr>
+              <tr><td>Licencia anual de software</td><td class="num">3</td><td class="num">45,00 €</td><td class="num">135,00 €</td></tr>
+              <tr><td>Formación presencial</td><td class="num">4</td><td class="num">80,00 €</td><td class="num">320,00 €</td></tr>
             </tbody>
           </table>
 
@@ -150,14 +166,20 @@
             <p class="is-total"><span>Total</span><b>1.440,51 €</b></p>
           </div>
 
+          <div class="sheet-pay">
+            <span class="sheet-pay-k">Forma de pago</span>
+            <span>Transferencia a <span class="mono">ES91 2100 0418 4502 0005 1332</span></span>
+          </div>
+
           <p class="sheet-note">
-            Pago por transferencia a la cuenta indicada. Esta factura se ha
-            generado escaneando el documento original: la perspectiva de la
-            fotografía queda corregida y el texto conserva su nitidez al
-            imprimir.
+            Documento obtenido escaneando el original: la perspectiva de la
+            fotografía queda corregida y el texto conserva su nitidez al imprimir.
           </p>
 
-          <p class="sheet-foot">Estudio Taller Norte · Calle del Olivar 12, Madrid · IVA DE4521908R</p>
+          <p class="sheet-foot">
+            <span>Estudio Taller Norte · Calle del Olivar 12, Madrid · IVA DE4521908R</span>
+            <span class="mono">1 / 1</span>
+          </p>
         </div>
         <figcaption>Hoja A4 tal y como sale del generador de PDF</figcaption>
       </figure>
