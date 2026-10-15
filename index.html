@@ -64,7 +64,7 @@
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z"/><path d="M14 2v5h5" class="ln"/><rect x="7.5" y="12" width="9" height="6" rx="1" class="ln"/></svg>
     <span class="brand-name">Foto&nbsp;a&nbsp;PDF</span>
   </a>
-  <p class="tagline">Gratis · sin registro · sin anuncios</p>
+  <a class="topbar-link" href="#faq-title">Preguntas frecuentes</a>
 </header>
 
 <main id="main">
@@ -73,6 +73,7 @@
 
     <!-- ─────────────────────────────── héroe ─────────────── -->
     <div class="hero">
+      <div class="hero-main">
       <span class="kicker">Escáner en el navegador</span>
       <h1>Convierte las fotos de tu móvil en <em>un PDF</em></h1>
       <p class="lede">
@@ -116,6 +117,50 @@
         <label for="set-autocrop">Ajustar el documento automáticamente</label>
         <input type="checkbox" id="set-autocrop" class="switch" checked>
       </div>
+      </div>
+
+      <figure class="specimen">
+        <div class="sheet" role="img"
+             aria-label="Hoja A4 resultante de escanear una factura: encabezados, tabla de conceptos, totales y pie de página.">
+          <div class="sheet-head">
+            <span class="sheet-logo"></span>
+            <span class="sheet-co">Estudio Taller Norte</span>
+            <span class="sheet-no">Nº 0042</span>
+          </div>
+
+          <h3 class="sheet-title">Factura</h3>
+          <p class="sheet-meta">12 de marzo de 2026 · Cliente: Marría Documents S.L.</p>
+
+          <table class="sheet-table">
+            <thead>
+              <tr><th scope="col">Concepto</th><th scope="col">Cant.</th><th scope="col">Importe</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Mantenimiento de equipos</td><td>2</td><td>480,00 €</td></tr>
+              <tr><td>Sustitución de componentes</td><td>1</td><td>210,50 €</td></tr>
+              <tr><td>Desplazamiento</td><td>1</td><td>45,00 €</td></tr>
+              <tr><td>Licencia anual de software</td><td>3</td><td>135,00 €</td></tr>
+              <tr><td>Formación presencial</td><td>4</td><td>320,00 €</td></tr>
+            </tbody>
+          </table>
+
+          <div class="sheet-totals">
+            <p><span>Base imponible</span><b>1.190,50 €</b></p>
+            <p><span>IVA 21 %</span><b>250,01 €</b></p>
+            <p class="is-total"><span>Total</span><b>1.440,51 €</b></p>
+          </div>
+
+          <p class="sheet-note">
+            Pago por transferencia a la cuenta indicada. Esta factura se ha
+            generado escaneando el documento original: la perspectiva de la
+            fotografía queda corregida y el texto conserva su nitidez al
+            imprimir.
+          </p>
+
+          <p class="sheet-foot">Estudio Taller Norte · Calle del Olivar 12, Madrid · IVA DE4521908R</p>
+        </div>
+        <figcaption>Hoja A4 tal y como sale del generador de PDF</figcaption>
+      </figure>
     </div>
 
 
@@ -134,6 +179,26 @@
       <p>Sube tus fotos aquí</p>
       <span>o pulsa para buscarlas · JPG, PNG, HEIC, WEBP</span>
     </div>
+
+    <!-- ─────────────────────────────── muestra A4 ─────────────────────── -->
+    <section class="sample" aria-labelledby="sample-title">
+
+      <div class="sample-copy">
+        <span class="kicker">El resultado</span>
+        <h2 id="sample-title">Una hoja recta y legible, no una foto torcida</h2>
+        <p>
+          El detector encuentra el papel sobre la mesa, le quita la perspectiva
+          y lo deja alineado con el resto del documento. El texto se incrusta a
+          más de 200 DPI, así que se lee igual en la pantalla que en la
+          impresora.
+        </p>
+        <dl class="sample-facts">
+          <div><dt>Resolución</dt><dd>+200 DPI</dd></div>
+          <div><dt>Perspectiva</dt><dd>Corregida</dd></div>
+          <div><dt>Mesa alrededor</dt><dd>Eliminada</dd></div>
+        </dl>
+      </div>
+    </section>
 
     <!-- ─────────────────────────────── cómo funciona ─────────────────── -->
     <section class="how" aria-labelledby="how-title">
