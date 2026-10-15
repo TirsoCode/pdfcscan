@@ -303,8 +303,10 @@ main { flex: 1; }
 @media (min-width: 1080px) {
   .hero {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 460px;
-    gap: clamp(40px, 5vw, 88px);
+    /* La columna es más ancha que la propia hoja para que esta quede
+       centrada dentro, y no pegada al borde derecho de la pantalla. */
+    grid-template-columns: minmax(0, 1fr) 580px;
+    gap: clamp(40px, 4vw, 72px);
     align-items: center;
   }
   .hero-main { max-width: none; }
