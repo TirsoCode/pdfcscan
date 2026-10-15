@@ -1,0 +1,12 @@
+# Lo que se despliega es solo web estática: no hay build ni dependencias.
+# Los tests usan puppeteer-core/playwright y viven fuera del bundle.
+node_modules/
+test/
+package.json
+package-lock.json
+.env*
+.vercel/
+opencode.json
+README.md
+serve.mjs
+*.md

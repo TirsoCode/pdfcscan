@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Foto a PDF — convierte fotos en PDF gratis, sin registro</title>
+<meta name="description" content="Escanea un documento con la cámara o sube fotos, ordénalas y descarga un PDF listo para imprimir. Todo en el navegador: gratis, sin registro, sin anuncios y sin subir nada a un servidor.">
+<link rel="canonical" href="https://pdfscanapp.vercel.app/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="author" content="Foto a PDF">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Foto a PDF">
+<meta property="og:locale" content="es_ES">
+<meta property="og:url" content="https://pdfscanapp.vercel.app/">
+<meta property="og:title" content="Foto a PDF — convierte las fotos de tu móvil en un PDF gratis">
+<meta property="og:description" content="Escanea con la cámara o sube fotos, ordénalas y descarga el PDF. En el navegador, sin registro y sin anuncios.">
+<meta property="og:image" content="https://pdfscanapp.vercel.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Foto a PDF: convierte las fotos de tu móvil en un PDF listo para imprimir">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Foto a PDF — convierte fotos en PDF gratis">
+<meta name="twitter:description" content="Escanea con la cámara o sube fotos y descarga el PDF. Gratis, sin registro y sin anuncios.">
+<meta name="twitter:image" content="https://pdfscanapp.vercel.app/og.png">
+<meta name="theme-color" content="#f7f6f3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16161a" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Foto a PDF",
+  "url": "https://pdfscanapp.vercel.app/",
+  "applicationCategory": "ProductivityApplication",
+  "operatingSystem": "Android, iOS, Windows, macOS, Linux",
+  "description": "Convierte fotos en un PDF escaneado directamente en el navegador. Detecta el documento, corrige la perspectiva y genera el PDF sin subir las imágenes a ningún servidor.",
+  "inLanguage": "es",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR"
+  },
+  "featureList": [
+    "Detección automática del documento y corrección de perspectiva",
+    "Escaneo con la cámara del móvil",
+    "Reordenar, girar, duplicar y borrar páginas",
+    "Tamaños A6 a A3, Carta, Legal y 4x6 pulgadas",
+    "Descarga e impresión de PDF en el navegador"
+  ]
+}
+</script>
+</head>
+<body>
+
+<a class="skip" href="#main">Saltar al contenido</a>
+
+<header class="topbar">
+  <a class="brand" href="./">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Z"/><path d="M14 2v5h5" class="ln"/><rect x="7.5" y="12" width="9" height="6" rx="1" class="ln"/></svg>
+    <span class="brand-name">Foto&nbsp;a&nbsp;PDF</span>
+  </a>
+  <p class="tagline">Gratis · sin registro · sin anuncios</p>
+</header>
+
+<main id="main">
+
+  <section class="screen screen-start" id="screen-start" aria-label="Inicio">
+
+    <!-- ─────────────────────────────── héroe ─────────────── -->
+    <div class="hero">
+      <span class="kicker">Escáner en el navegador</span>
+      <h1>Convierte las fotos de tu móvil en <em>un PDF</em></h1>
+      <p class="lede">
+        Escanea el papel con la cámara o arrastra las fotos que ya tengas.
+        Encontramos los bordes, quitamos la perspectiva y tú decides el orden.
+        Las imágenes no salen del dispositivo.
+      </p>
+
+      <div class="hero-actions">
+        <button class="btn btn-primary" id="btn-camera" type="button">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8.5A2.5 2.5 0 0 1 5.5 6h1.2a2 2 0 0 0 1.7-1l.6-1a1.5 1.5 0 0 1 1.3-.8h3.4a1.5 1.5 0 0 1 1.3.8l.6 1a1.5 1.5 0 0 0 1.7 1h1.2A2.5 2.5 0 0 1 21 8.5v9A2.5 2.5 0 0 1 18.5 20h-13A2.5 2.5 0 0 1 3 17.5Z"/><circle cx="12" cy="13" r="3.6"/></svg>
+          Escanear con la cámara
+        </button>
+        <button class="btn btn-secondary" id="btn-files" type="button">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.8"/><path d="m3 16 4.5-4 4 3.5 3-2.5L21 17"/></svg>
+          Elegir fotos
+        </button>
+        <input type="file" id="file-input" accept="image/*" multiple hidden>
+      </div>
+
+      <div class="url-row">
+        <label for="url-input">O pega el enlace de una imagen o de una web</label>
+        <input type="url" id="url-input" class="url-input"
+               placeholder="https://ejemplo.com/foto.jpg"
+               inputmode="url" autocomplete="off" spellcheck="false"
+               aria-describedby="url-note">
+        <button class="btn btn-secondary" id="btn-url" type="button">Añadir</button>
+        <p class="url-note" id="url-note">
+          Las imágenes se descargan directamente. Para capturar una página web
+          entera hay que enviar su dirección a un servicio externo de captura;
+          el resto del procesamiento se hace en tu equipo.
+        </p>
+      </div>
+
+      <div class="field-row autocrop">
+        <label for="set-autocrop">Ajustar el documento automáticamente</label>
+        <input type="checkbox" id="set-autocrop" class="switch" checked>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────── demo comparador grande ─────────────── -->
+    <div class="demo" id="demo-mockup" aria-label="Demostración de escaneo automático">
+      <div class="demo-head">
+        <span class="kicker">Míralo en acción</span>
+        <h2>Arrastra y comprueba la diferencia</h2>
+        <p>A la izquierda, la foto que haces con el móvil. A la derecha, el PDF que genera la app: sin bordes, sin perspectiva y listo para imprimir.</p>
+      </div>
+
+      <!-- Escenario visual comparador -->
+      <div class="demo-stage" id="demo-stage">
+
+        <!-- ESTADO: ANTES (foto inclinada, perspectiva, marcadores de detección) -->
+        <div class="demo-state demo-before" id="demo-before" aria-hidden="false">
+          <!-- Fondo tipo escritorio -->
+          <div class="desk-surface" aria-hidden="true"></div>
+
+          <!-- Papel inclinado -->
+          <div class="paper-photo" aria-hidden="true">
+            <div class="paper-content">
+              <div class="paper-header">
+                <div class="paper-logo"></div>
+                <div class="paper-header-lines">
+                  <div class="line w-40"></div>
+                  <div class="line w-30"></div>
+                </div>
+              </div>
+              <div class="paper-title">FACTURA #0042</div>
+              <div class="paper-meta">
+                <div class="line w-25"></div>
+                <div class="line w-35"></div>
+              </div>
+              <div class="paper-table">
+                <div class="table-header">
+                  <div class="line"></div><div class="line"></div><div class="line"></div>
+                </div>
+                <div class="table-row"><div class="line"></div><div class="line"></div><div class="line short"></div></div>
+                <div class="table-row"><div class="line"></div><div class="line"></div><div class="line short"></div></div>
+                <div class="table-row"><div class="line"></div><div class="line"></div><div class="line short"></div></div>
+              </div>
+              <div class="paper-footer">
+                <div class="line w-50"></div>
+                <div class="line w-30"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- HUD de detección -->
+          <div class="detect-box" aria-hidden="true">
+            <div class="detect-corner tl"></div>
+            <div class="detect-corner tr"></div>
+            <div class="detect-corner bl"></div>
+            <div class="detect-corner br"></div>
+            <svg class="detect-lines" viewBox="0 0 200 260" preserveAspectRatio="none">
+              <line x1="15" y1="15" x2="185" y2="15" />
+              <line x1="185" y1="15" x2="185" y2="245" />
+              <line x1="185" y1="245" x2="15" y2="245" />
+              <line x1="15" y1="245" x2="15" y2="15" />
+            </svg>
+            <div class="detect-scanline" aria-hidden="true"></div>
+          </div>
+
+          <!-- Etiqueta ANTES -->
+          <div class="demo-tag before" aria-hidden="true">
+            <svg class="ico" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.8"/><path d="m3 16 4.5-4 4 3.5 3-2.5L21 17"/></svg>
+            Foto original
+          </div>
+        </div>
+
+        <!-- ESTADO: DESPUÉS (PDF limpio, recto, alto contraste) -->
+        <div class="demo-state demo-after" id="demo-after" aria-hidden="true">
+          <!-- Papel recto, limpio -->
+          <div class="paper-pdf" aria-hidden="true">
+            <div class="pdf-content">
+              <div class="pdf-header">
+                <div class="pdf-logo"></div>
+                <div class="pdf-header-lines">
+                  <div class="line dark w-45"></div>
+                  <div class="line muted w-30"></div>
+                </div>
+              </div>
+              <div class="pdf-title">FACTURA #0042</div>
+              <div class="pdf-meta">
+                <div class="line dark w-25"></div>
+                <div class="line muted w-35"></div>
+              </div>
+              <div class="pdf-table">
+                <div class="table-header clean">
+                  <div class="line dark"></div><div class="line dark"></div><div class="line dark"></div>
+                </div>
+                <div class="table-row clean"><div class="line"></div><div class="line"></div><div class="line short"></div></div>
+                <div class="table-row clean"><div class="line"></div><div class="line"></div><div class="line short"></div></div>
+                <div class="table-row clean"><div class="line"></div><div class="line"></div><div class="line short"></div></div>
+              </div>
+              <div class="pdf-footer">
+                <div class="line dark w-50"></div>
+                <div class="line muted w-30"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Etiqueta DESPUÉS -->
+          <div class="demo-tag after" aria-hidden="true">
+            <svg class="ico" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
+            PDF corregido
+          </div>
+        </div>
+
+        <!-- Línea divisoria -->
+        <div class="demo-divider" aria-hidden="true"></div>
+
+        <!-- Asa del divisor -->
+        <div class="demo-handle" aria-hidden="true">
+          <svg class="ico" viewBox="0 0 24 24"><path d="m8 7-4 5 4 5M16 7l4 5-4 5"/></svg>
+        </div>
+
+        <!-- Slider accesible (invisible pero operable) -->
+        <input type="range" class="demo-range" min="0" max="100" value="50" step="1"
+               aria-label="Comparar foto original y PDF corregido"
+               aria-valuetext="50%">
+      </div>
+
+      <!-- CTA inferior -->
+      <p class="demo-cta">← Arrastra la línea para comparar →</p>
+    </div>
+
+    <!-- Propiedades -->
+    <h2 class="sr-only">Qué hace esta herramienta</h2>
+    <ul class="points">
+      <li><strong>Auto-recorte</strong>Localiza el papel en la foto y lo endereza quitando la perspectiva.</li>
+      <li><strong>Sin instalar nada</strong>Abre el enlace en el navegador del móvil o del ordenador y ya funciona.</li>
+      <li><strong>Privada</strong>El procesamiento ocurre en tu memoria; al cerrar la pestaña no queda rastro.</li>
+    </ul>
+
+    <!-- Zona de arrastre -->
+    <div class="dropzone" id="dropzone" tabindex="0" role="button"
+         aria-label="Arrastra aquí tus fotos o pulsa para buscarlas">
+      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4m0 0L8 8m4-4 4 4"/><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>
+      <p>Arrastra las fotos aquí</p>
+      <span>o haz clic para buscarlas · JPG, PNG, HEIC, WEBP</span>
+    </div>
+
+    <!-- ─────────────────────────────── cómo funciona ─────────────────── -->
+    <section class="how" aria-labelledby="how-title">
+      <div class="section-head">
+        <span class="kicker">Paso a paso</span>
+        <h2 id="how-title">Cómo se hace</h2>
+        <p class="section-lede">
+          Cuatro pasos y ninguno te saca del navegador: la foto entra, el PDF
+          sale. No hay que registrarse ni instalar nada.
+        </p>
+      </div>
+
+      <div class="tabs">
+        <div class="tablist" role="tablist" aria-label="Pasos para convertir fotos en PDF">
+          <button class="tab" role="tab" type="button"
+                  id="tab-capture" aria-controls="panel-capture" aria-selected="true">Capturar</button>
+          <button class="tab" role="tab" type="button"
+                  id="tab-arrange" aria-controls="panel-arrange" aria-selected="false" tabindex="-1">Ordenar</button>
+          <button class="tab" role="tab" type="button"
+                  id="tab-tune" aria-controls="panel-tune" aria-selected="false" tabindex="-1">Ajustar</button>
+          <button class="tab" role="tab" type="button"
+                  id="tab-export" aria-controls="panel-export" aria-selected="false" tabindex="-1">Descargar</button>
+          <button class="tab" role="tab" type="button"
+                  id="tab-web" aria-controls="panel-web" aria-selected="false" tabindex="-1">Desde una URL</button>
+        </div>
+
+        <div class="panel" role="tabpanel" id="panel-capture" aria-labelledby="tab-capture" tabindex="0">
+          <p class="panel-no">01</p>
+          <h3>Capturar el papel</h3>
+          <p>
+            Apunta la cámara y haz una foto por cada cara. La app busca el
+            cuadrilátero del papel sobre la mesa, calcula la perspectiva y
+            entrega la hoja ya enderezada. Si el recorte automático se equivoca,
+            abres la miniatura y corriges las esquinas a mano.
+          </p>
+          <p class="panel-aside">
+            También vale con fotos del carrete, con varias fotos a la vez o
+            arrastrándolas sobre la página.
+          </p>
+        </div>
+
+        <div class="panel" role="tabpanel" id="panel-arrange" aria-labelledby="tab-arrange" tabindex="0" hidden>
+          <p class="panel-no">02</p>
+          <h3>Ponerlo en orden</h3>
+          <p>
+            Cada página es una tarjeta. Arrastra el tirador para moverla, o
+            pulsa la miniatura para abrir el recorte. Con los botones de cada
+            tarjeta se gira, se duplica y se borra sin volver al carrete.
+          </p>
+          <p class="panel-aside">
+            El orden es exactamente el orden de páginas del PDF.
+          </p>
+        </div>
+
+        <div class="panel" role="tabpanel" id="panel-tune" aria-labelledby="tab-tune" tabindex="0" hidden>
+          <p class="panel-no">03</p>
+          <h3>Ajustar la página</h3>
+          <p>
+            Elige el tamaño (de A6 a A3, Carta, Legal, 4×6″ y 5×7″), la
+            orientación, el margen y cómo encaja la imagen: ajustada a la
+            página, a lo ancho, a lo alto, rellenando o a tamaño real. El filtro
+            de gris o color se aplica a todo el documento.
+          </p>
+          <p class="panel-aside">
+            La imagen se incrusta a más de 200 DPI, así que sale nítida también
+            impresa, no solo en pantalla.
+          </p>
+        </div>
+
+        <div class="panel" role="tabpanel" id="panel-export" aria-labelledby="tab-export" tabindex="0" hidden>
+          <p class="panel-no">04</p>
+          <h3>Descargar o imprimir</h3>
+          <p>
+            El PDF se arma en tu equipo, página a página, y se descarga con el
+            nombre que le hayas puesto al documento. Si prefieres imprimir
+            directamente, el botón de imprimir abre el PDF con el diálogo del
+            sistema y solo eliges destino y copias.
+          </p>
+          <p class="panel-aside">
+            El generador de PDF va incluido en la app: no hay librerías externas.
+          </p>
+        </div>
+
+        <div class="panel" role="tabpanel" id="panel-web" aria-labelledby="tab-web" tabindex="0" hidden>
+          <p class="panel-no">05</p>
+          <h3>Traer una imagen o una web</h3>
+          <p>
+            Pega una dirección y se añade sola. Si acaba en
+            <code>.jpg</code>, <code>.png</code> y compañía, se descarga esa
+            imagen. Si no, se trata como una página web: se captura entera y se
+            trocea en páginas con proporción A4 para que imprima bien.
+          </p>
+          <p class="panel-aside">
+            La captura es el único paso que consulta un servicio externo, y solo
+            recibe la dirección de la página. Tus fotos nunca se envían.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────────────────────────── preguntas ──────────────────────── -->
+    <section class="faq" aria-labelledby="faq-title">
+      <div class="section-head">
+        <span class="kicker">Dudas</span>
+        <h2 id="faq-title">Preguntas frecuentes</h2>
+      </div>
+
+      <details class="qa">
+        <summary>¿Se suben mis fotos a algún sitio?</summary>
+        <p>
+          No. El recorte, los filtros y el PDF se calculan en la memoria de tu
+          navegador y se pierden al cerrar la pestaña. Lo único que sale de tu
+          equipo es la dirección de una web cuando usas la captura de URL.
+        </p>
+      </details>
+
+      <details class="qa">
+        <summary>¿Hace falta crear una cuenta?</summary>
+        <p>
+          No. No hay registro, ni correo, ni base de datos. Abres la página y
+          ya puedes convertir. Los ajustes que cambies se recuerdan en tu
+          navegador para la próxima vez.
+        </p>
+      </details>
+
+      <details class="qa">
+        <summary>¿Sale borrosa la imagen al imprimir?</summary>
+        <p>
+          Depende de la foto de origen. La app no la reduce por debajo de 222
+          DPI en A4 —para eso fija el tamaño de página en A4, no en algo mayor— y
+          solo baja la calidad si tú lo haces con el control de calidad.
+        </p>
+      </details>
+
+      <details class="qa">
+        <summary>¿Por qué no se abren mis archivos HEIC?</summary>
+        <p>
+          HEIC solo lo sabe leer Safari. En Chrome, Firefox o Edge hay que
+          pasarlo antes a JPG. Si el archivo no se puede leer, la app te avisa en
+          lugar de fallar en silencio.
+        </p>
+      </details>
+
+      <details class="qa">
+        <summary>¿Cuántas páginas admite?</summary>
+        <p>
+          Las que quepan en la memoria del dispositivo. Con fotos de móvil
+          normales se llevan bien hasta una decena sin despeinarse; en
+          móviles con poca memoria, mejor en tandas.
+        </p>
+      </details>
+
+      <details class="qa">
+        <summary>¿Funciona sin conexión?</summary>
+        <p>
+          Sí. La primera visita guarda el armazón de la app, así que después
+          funciona con el móvil en modo avión. Lo que no funciona sin conexión
+          es la captura de una web por URL, que necesita Internet por
+          naturaleza.
+        </p>
+      </details>
+    </section>
+  </section>
+
+  <!-- ──────────────────────────────── editor ─────────────────────────── -->
+  <section class="screen" id="screen-editor" hidden>
+
+    <div class="toolbar">
+      <label class="docname">
+        <span class="sr-only">Nombre del documento</span>
+        <input type="text" id="doc-title" value="Documento" maxlength="80" autocomplete="off" spellcheck="false">
+      </label>
+
+      <div class="toolbar-actions">
+        <button class="btn btn-ghost" id="btn-add" type="button">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          Añadir fotos
+        </button>
+        <button class="btn btn-ghost" id="btn-reset" type="button">Empezar de cero</button>
+      </div>
+    </div>
+
+    <div class="workspace">
+
+      <div class="pages-col">
+        <div class="pages-head">
+          <h2 id="stat-pages">0 páginas</h2>
+          <p class="hint">Arrastra las tarjetas para cambiar el orden.</p>
+        </div>
+        <div class="pages" id="pages" role="list"></div>
+        <button class="add-more" id="add-more" type="button">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          Añadir más páginas
+        </button>
+      </div>
+
+      <aside class="settings" id="settings" aria-label="Ajustes del PDF">
+        <button class="settings-toggle" id="panel-toggle" type="button" aria-expanded="false" aria-controls="settings-body">
+          <span>Ajustes del PDF</span>
+          <svg class="ico chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+
+        <div class="settings-body" id="settings-body">
+          <div class="field">
+            <label for="set-size">Tamaño de página</label>
+            <select id="set-size"></select>
+          </div>
+
+          <div class="field">
+            <span class="label">Orientación</span>
+            <div class="seg" role="radiogroup" aria-label="Orientación" id="set-orient">
+              <button type="button" role="radio" data-value="auto" aria-checked="true">Auto</button>
+              <button type="button" role="radio" data-value="portrait" aria-checked="false">Vertical</button>
+              <button type="button" role="radio" data-value="landscape" aria-checked="false">Horizontal</button>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="set-fit">Cómo encaja la imagen</label>
+            <select id="set-fit">
+              <option value="contain">Ajustada a la página</option>
+              <option value="width">Ancho completo</option>
+              <option value="height">Alto completo</option>
+              <option value="fill">Llena la página (recorta)</option>
+              <option value="natural">Tamaño real de la foto</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="set-margin">Margen <output id="out-margin">1,0 cm</output></label>
+            <input type="range" id="set-margin" min="0" max="3" step="0.1" value="1">
+          </div>
+
+          <div class="field">
+            <span class="label">Aspecto</span>
+            <div class="seg seg-scroll" role="radiogroup" aria-label="Filtro" id="set-filter"></div>
+          </div>
+
+          <div class="field">
+            <label for="set-quality">Calidad <output id="out-quality">Máxima</output></label>
+            <input type="range" id="set-quality" min="50" max="98" step="2" value="92">
+          </div>
+
+          <div class="field field-row">
+            <label for="set-numbers">Numerar las páginas</label>
+            <input type="checkbox" id="set-numbers" class="switch">
+          </div>
+
+          <p class="estimate" id="estimate">—</p>
+        </div>
+      </aside>
+    </div>
+
+    <div class="actionbar">
+      <button class="btn btn-primary btn-block" id="btn-download" type="button">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0 4-4m-4 4-4-4"/><path d="M5 19h14"/></svg>
+        Descargar PDF
+      </button>
+      <button class="btn btn-secondary" id="btn-print" type="button">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 9V3h10v6"/><rect x="4" y="9" width="16" height="7" rx="2"/><path d="M7 14h10v7H7z"/></svg>
+        Imprimir
+      </button>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <p>Gratis, sin registro y sin anuncios. Tus fotos nunca se suben a ningún servidor.</p>
+</footer>
+
+<noscript>
+  <div class="screen" style="padding-top:32px">
+    <h2 style="font-size:1.4rem">Esta herramienta necesita JavaScript</h2>
+    <p class="lede">Todo el procesamiento ocurre en tu navegador, así que sin JavaScript no hay forma de generar el PDF. Actívalo y recarga la página.</p>
+  </div>
+</noscript>
+
+<!-- ─────────────────────────────────── cámara ─────────────────────────── -->
+<div class="modal" id="modal-camera" hidden>
+  <div class="modal-card camera-card" role="dialog" aria-modal="true" aria-labelledby="cam-title">
+    <div class="modal-head">
+      <h2 id="cam-title">Escanear documento</h2>
+      <button class="icon-btn" id="btn-cam-close" type="button" aria-label="Cerrar cámara">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+
+    <div class="viewport">
+      <video id="video" playsinline muted></video>
+      <div class="vp-frame" aria-hidden="true"></div>
+      <p class="vp-tip" id="cam-tip">Coloca el papel dentro del marco, con buena luz.</p>
+    </div>
+
+    <div class="modal-foot">
+      <button class="btn btn-ghost" id="btn-cam-flip" type="button">Cambiar cámara</button>
+      <button class="btn btn-primary btn-round" id="btn-shot" type="button" aria-label="Capturar foto">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7"/></svg>
+      </button>
+      <button class="btn btn-ghost" id="btn-cam-from-file" type="button">Desde archivo</button>
+    </div>
+  </div>
+</div>
+
+<!-- ─────────────────────────────────── recorte ─────────────────────────── -->
+<div class="modal" id="modal-crop" hidden>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="crop-title">
+    <div class="modal-head">
+      <h2 id="crop-title">Ajustar el recorte</h2>
+      <button class="icon-btn" id="btn-crop-cancel" type="button" aria-label="Cerrar">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <div class="crop-stage"><canvas id="crop-canvas"></canvas></div>
+    <div class="modal-foot crop-foot">
+      <button class="btn btn-ghost" id="btn-crop-auto" type="button">Auto</button>
+      <button class="btn btn-ghost" id="btn-crop-full" type="button">Foto entera</button>
+      <button class="btn btn-primary" id="btn-crop-apply" type="button">Aplicar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ─────────────────────────────────── avisos ──────────────────────────── -->
+<div class="toasts" id="toasts" aria-live="polite" aria-atomic="false"></div>
+
+<div class="busy" id="busy" hidden>
+  <div class="busy-box">
+    <svg class="spinner" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" opacity=".25"/><path d="M21 12a9 9 0 0 0-9-9"/></svg>
+    <span id="busy-text">Procesando…</span>
+  </div>
+</div>
+
+<script type="module" src="js/app.js"></script>
+<script type="module" src="js/demo.js"></script>
+</body>
+</html>

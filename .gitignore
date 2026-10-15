@@ -1,0 +1,10 @@
+# Credenciales de Vercel: nunca deben subir al repositorio
+.env*
+.vercel
+
+# Dependencias de los tests (la web es estática y no necesita nada)
+node_modules/
+
+# Sistema
+.DS_Store
+*.log

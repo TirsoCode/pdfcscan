@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Foto a PDF">
+  <title>Foto a PDF</title>
+  <!-- bloque de tinta: el icono tiene que leerse también a 16 px -->
+  <rect width="32" height="32" rx="7" fill="#111111"/>
+  <!-- hoja con el pliegue arriba a la derecha -->
+  <path d="M9.6 5.4h8.1l5.1 5.1v15.1a.9.9 0 0 1-.9.9H9.6a.9.9 0 0 1-.9-.9V6.3a.9.9 0 0 1 .9-.9Z"
+        fill="none" stroke="#f7f6f3" stroke-width="1.7" stroke-linejoin="round"/>
+  <path d="M17.7 5.6v5h4.9"
+        fill="none" stroke="#f7f6f3" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- dos líneas de texto: la marca de "documento escaneado" -->
+  <path d="M11.6 15.4h8.8M11.6 19.4h8.8M11.6 23.4h5.2"
+        stroke="#f7f6f3" stroke-width="1.6" stroke-linecap="round" opacity=".72"/>
+</svg>
