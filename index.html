@@ -76,7 +76,7 @@
       <span class="kicker">Escáner en el navegador</span>
       <h1>Convierte las fotos de tu móvil en <em>un PDF</em></h1>
       <p class="lede">
-        Escanea el papel con la cámara o arrastra las fotos que ya tengas.
+        Escanea el papel con la cámara o sube las fotos que ya tengas.
         Encontramos los bordes, quitamos la perspectiva y tú decides el orden.
         Las imágenes no salen del dispositivo.
       </p>
@@ -107,136 +107,17 @@
         </p>
       </div>
 
+      <div class="templates" role="group" aria-labelledby="tpl-title">
+        <span class="kicker" id="tpl-title">Plantillas</span>
+        <div class="chips" id="tpl-chips"></div>
+      </div>
+
       <div class="field-row autocrop">
         <label for="set-autocrop">Ajustar el documento automáticamente</label>
         <input type="checkbox" id="set-autocrop" class="switch" checked>
       </div>
     </div>
 
-    <!-- ─────────────────────────────── demo comparador grande ─────────────── -->
-    <div class="demo" id="demo-mockup" aria-label="Demostración de escaneo automático">
-      <div class="demo-head">
-        <span class="kicker">Míralo en acción</span>
-        <h2>Arrastra y comprueba la diferencia</h2>
-        <p>A la izquierda, la foto que haces con el móvil. A la derecha, el PDF que genera la app: sin bordes, sin perspectiva y listo para imprimir.</p>
-      </div>
-
-      <!-- Escenario visual comparador -->
-      <div class="demo-stage" id="demo-stage">
-
-        <!-- ESTADO: ANTES (foto inclinada, perspectiva, marcadores de detección) -->
-        <div class="demo-state demo-before" id="demo-before" aria-hidden="false">
-          <!-- Fondo tipo escritorio -->
-          <div class="desk-surface" aria-hidden="true"></div>
-
-          <!-- Papel inclinado -->
-          <div class="paper-photo" aria-hidden="true">
-            <div class="paper-content">
-              <div class="paper-header">
-                <div class="paper-logo"></div>
-                <div class="paper-header-lines">
-                  <div class="line w-40"></div>
-                  <div class="line w-30"></div>
-                </div>
-              </div>
-              <div class="paper-title">FACTURA #0042</div>
-              <div class="paper-meta">
-                <div class="line w-25"></div>
-                <div class="line w-35"></div>
-              </div>
-              <div class="paper-table">
-                <div class="table-header">
-                  <div class="line"></div><div class="line"></div><div class="line"></div>
-                </div>
-                <div class="table-row"><div class="line"></div><div class="line"></div><div class="line short"></div></div>
-                <div class="table-row"><div class="line"></div><div class="line"></div><div class="line short"></div></div>
-                <div class="table-row"><div class="line"></div><div class="line"></div><div class="line short"></div></div>
-              </div>
-              <div class="paper-footer">
-                <div class="line w-50"></div>
-                <div class="line w-30"></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- HUD de detección -->
-          <div class="detect-box" aria-hidden="true">
-            <div class="detect-corner tl"></div>
-            <div class="detect-corner tr"></div>
-            <div class="detect-corner bl"></div>
-            <div class="detect-corner br"></div>
-            <svg class="detect-lines" viewBox="0 0 200 260" preserveAspectRatio="none">
-              <line x1="15" y1="15" x2="185" y2="15" />
-              <line x1="185" y1="15" x2="185" y2="245" />
-              <line x1="185" y1="245" x2="15" y2="245" />
-              <line x1="15" y1="245" x2="15" y2="15" />
-            </svg>
-            <div class="detect-scanline" aria-hidden="true"></div>
-          </div>
-
-          <!-- Etiqueta ANTES -->
-          <div class="demo-tag before" aria-hidden="true">
-            <svg class="ico" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.8"/><path d="m3 16 4.5-4 4 3.5 3-2.5L21 17"/></svg>
-            Foto original
-          </div>
-        </div>
-
-        <!-- ESTADO: DESPUÉS (PDF limpio, recto, alto contraste) -->
-        <div class="demo-state demo-after" id="demo-after" aria-hidden="true">
-          <!-- Papel recto, limpio -->
-          <div class="paper-pdf" aria-hidden="true">
-            <div class="pdf-content">
-              <div class="pdf-header">
-                <div class="pdf-logo"></div>
-                <div class="pdf-header-lines">
-                  <div class="line dark w-45"></div>
-                  <div class="line muted w-30"></div>
-                </div>
-              </div>
-              <div class="pdf-title">FACTURA #0042</div>
-              <div class="pdf-meta">
-                <div class="line dark w-25"></div>
-                <div class="line muted w-35"></div>
-              </div>
-              <div class="pdf-table">
-                <div class="table-header clean">
-                  <div class="line dark"></div><div class="line dark"></div><div class="line dark"></div>
-                </div>
-                <div class="table-row clean"><div class="line"></div><div class="line"></div><div class="line short"></div></div>
-                <div class="table-row clean"><div class="line"></div><div class="line"></div><div class="line short"></div></div>
-                <div class="table-row clean"><div class="line"></div><div class="line"></div><div class="line short"></div></div>
-              </div>
-              <div class="pdf-footer">
-                <div class="line dark w-50"></div>
-                <div class="line muted w-30"></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Etiqueta DESPUÉS -->
-          <div class="demo-tag after" aria-hidden="true">
-            <svg class="ico" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
-            PDF corregido
-          </div>
-        </div>
-
-        <!-- Línea divisoria -->
-        <div class="demo-divider" aria-hidden="true"></div>
-
-        <!-- Asa del divisor -->
-        <div class="demo-handle" aria-hidden="true">
-          <svg class="ico" viewBox="0 0 24 24"><path d="m8 7-4 5 4 5M16 7l4 5-4 5"/></svg>
-        </div>
-
-        <!-- Slider accesible (invisible pero operable) -->
-        <input type="range" class="demo-range" min="0" max="100" value="50" step="1"
-               aria-label="Comparar foto original y PDF corregido"
-               aria-valuetext="50%">
-      </div>
-
-      <!-- CTA inferior -->
-      <p class="demo-cta">← Arrastra la línea para comparar →</p>
-    </div>
 
     <!-- Propiedades -->
     <h2 class="sr-only">Qué hace esta herramienta</h2>
@@ -248,10 +129,10 @@
 
     <!-- Zona de arrastre -->
     <div class="dropzone" id="dropzone" tabindex="0" role="button"
-         aria-label="Arrastra aquí tus fotos o pulsa para buscarlas">
+         aria-label="Selecciona las fotos que quieras convertir">
       <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4m0 0L8 8m4-4 4 4"/><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>
-      <p>Arrastra las fotos aquí</p>
-      <span>o haz clic para buscarlas · JPG, PNG, HEIC, WEBP</span>
+      <p>Sube tus fotos aquí</p>
+      <span>o pulsa para buscarlas · JPG, PNG, HEIC, WEBP</span>
     </div>
 
     <!-- ─────────────────────────────── cómo funciona ─────────────────── -->
@@ -290,7 +171,7 @@
           </p>
           <p class="panel-aside">
             También vale con fotos del carrete, con varias fotos a la vez o
-            arrastrándolas sobre la página.
+            subiendo las que tengas en el carrete.
           </p>
         </div>
 
@@ -298,7 +179,7 @@
           <p class="panel-no">02</p>
           <h3>Ponerlo en orden</h3>
           <p>
-            Cada página es una tarjeta. Arrastra el tirador para moverla, o
+            Cada página es una tarjeta. Usa el tirador para moverla, o
             pulsa la miniatura para abrir el recorte. Con los botones de cada
             tarjeta se gira, se duplica y se borra sin volver al carrete.
           </p>
@@ -440,7 +321,7 @@
       <div class="pages-col">
         <div class="pages-head">
           <h2 id="stat-pages">0 páginas</h2>
-          <p class="hint">Arrastra las tarjetas para cambiar el orden.</p>
+          <p class="hint">Usa el tirador de cada tarjeta para cambiar el orden.</p>
         </div>
         <div class="pages" id="pages" role="list"></div>
         <button class="add-more" id="add-more" type="button">
@@ -585,6 +466,5 @@
 </div>
 
 <script type="module" src="js/app.js"></script>
-<script type="module" src="js/demo.js"></script>
 </body>
 </html>

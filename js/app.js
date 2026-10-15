@@ -32,6 +32,7 @@ const LS_KEY = 'fotoapdf.settings.v1';
 
 const state = {
   pages: [],
+  templateId: null,
   settings: {
     pageSize: 'a4',
     orientation: 'auto',
@@ -81,6 +82,7 @@ function init() {
   renderPages();
   initSortable(els.pages);
   initTabs();
+  initTemplates();
   registerServiceWorker();
 }
 
@@ -134,8 +136,6 @@ function wireEvents() {
   els.dropzone.addEventListener('keydown', (e) => {
     if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openPicker(); }
   });
-
-  // El comparador visual se inicializa en js/demo.js
 
   // arrastrar y soltar en cualquier punto de la página
   const isFileDrag = (e) => [...(e.dataTransfer?.types || [])].includes('Files');
@@ -272,6 +272,7 @@ function renderSettings() {
   $('#out-margin').textContent = `${s.marginCm.toFixed(1).replace('.', ',')} cm`;
   $('#out-quality').textContent =
     s.quality >= 0.9 ? 'Máxima' : s.quality >= 0.75 ? 'Alta' : s.quality >= 0.6 ? 'Media' : 'Baja';
+  syncTemplates();
   renderEstimate();
 }
 
@@ -591,6 +592,98 @@ async function decodeImage(file) {
   }
 }
 
+// ═══════════════════════════════════════════════════════ plantillas ═════
+
+/**
+ * Ajustes que casi siempre acompañan a cada tipo de documento. Elegir una
+ * plantilla ahorra tocar cinco controles sueltos: tamaño, orientación,
+ * encaje, margen y filtro.
+ */
+const TEMPLATES = [
+  {
+    id: 'libro', label: 'Documento',
+    set: { pageSize: 'a4', orientation: 'auto', fit: 'contain', marginCm: 1, filter: 'original' },
+  },
+  {
+    id: 'factura', label: 'Factura',
+    set: { pageSize: 'a4', orientation: 'portrait', fit: 'contain', marginCm: 0.5, filter: 'original' },
+  },
+  {
+    id: 'nota', label: 'Nota', set: { pageSize: 'a5', orientation: 'auto', fit: 'contain', marginCm: 0.8, filter: 'original' },
+  },
+  {
+    id: 'documento-escaneado', label: 'Escaneado',
+    set: { pageSize: 'a4', orientation: 'auto', fit: 'width', marginCm: 0, filter: 'document' },
+  },
+  {
+    id: 'receta', label: 'Receta', set: { pageSize: 'a5', orientation: 'portrait', fit: 'contain', marginCm: 1.2, filter: 'original' },
+  },
+  {
+    id: 'foto', label: 'Foto',
+    set: { pageSize: '4x6', orientation: 'landscape', fit: 'fill', marginCm: 0, filter: 'vivid' },
+  },
+  {
+    id: 'folleto', label: 'Folleto',
+    set: { pageSize: 'a4', orientation: 'landscape', fit: 'fill', marginCm: 0, filter: 'original' },
+  },
+  {
+    id: 'grafico', label: 'Sologris',
+    set: { pageSize: 'a4', orientation: 'auto', fit: 'width', marginCm: 1, filter: 'gray' },
+  },
+];
+
+function initTemplates() {
+  const box = $('#tpl-chips');
+  if (!box) return;
+
+  for (const tpl of TEMPLATES) {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'chip';
+    b.dataset.tpl = tpl.id;
+    b.textContent = tpl.label;
+    b.setAttribute('aria-pressed', 'false');
+    b.title = 'Aplica tamaño, orientación, encaje, margen y filtro de golpe';
+    box.append(b);
+  }
+
+  // el filtro cambia las miniaturas, así que hay que rehacerlas
+  box.addEventListener('click', (e) => {
+    const b = e.target.closest('.chip');
+    if (!b) return;
+    applyTemplate(TEMPLATES.find((t) => t.id === b.dataset.tpl));
+  });
+
+  syncTemplates();
+}
+
+/** Aplica una plantilla y refleja cuál está activa. */
+function applyTemplate(tpl) {
+  if (!tpl) return;
+  state.templateId = state.templateId === tpl.id ? null : tpl.id;
+
+  if (state.templateId) {
+    Object.assign(state.settings, tpl.set);
+    thumbCache.clear();
+    commitSettings();
+    renderPages();
+  }
+  syncTemplates();
+}
+
+/** Marca la plantilla activa si los ajustes coinciden con los suyos. */
+function syncTemplates() {
+  const chips = $$('.chip');
+  if (!chips.length) return;
+
+  for (const chip of chips) {
+    const tpl = TEMPLATES.find((t) => t.id === chip.dataset.tpl);
+    const matches = tpl && Object.entries(tpl.set)
+      .every(([k, v]) => state.settings[k] === v);
+    chip.setAttribute('aria-pressed', String(!!matches));
+  }
+}
+
 // ════════════════════════════════════════════════════════ pestañas ══════
 
 /**
@@ -717,7 +810,7 @@ function renderPages() {
         ${pageBadge(page)}
       </button>
       <div class="card-tools">
-        <button type="button" data-act="grip" aria-label="Mover página" title="Arrastra para reordenar">${icon(ICONS.grip)}</button>
+        <button type="button" data-act="grip" aria-label="Mover página" title="Mover para reordenar">${icon(ICONS.grip)}</button>
         <button type="button" data-act="rotate" aria-label="Girar 90 grados" title="Girar 90°">${icon(ICONS.rotate)}</button>
         <button type="button" data-act="copy" aria-label="Duplicar" title="Duplicar">${icon(ICONS.copy)}</button>
         <span class="spacer"></span>
